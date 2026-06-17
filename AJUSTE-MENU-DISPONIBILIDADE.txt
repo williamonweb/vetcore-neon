@@ -1,0 +1,1 @@
+Ajuste realizado: removido o botão "Abrir próxima semana" do menu principal. A função permanece dentro do modal "Liberar dias de atendimento".

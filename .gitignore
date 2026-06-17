@@ -1,0 +1,17 @@
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Pacotes e dependências futuras
+node_modules/
+dist/
+build/
+.env
+.env.*
+
+# Arquivos compactados locais
+*.zip
+*.rar
+*.7z

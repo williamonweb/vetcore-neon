@@ -1,0 +1,17 @@
+AJUSTE DE UNIDADES - VETCORE
+
+Alterações desta versão:
+- Removido o topo inteligente/confuso com Cliente + Unidade + Plano.
+- Topo voltou ao formato simples anterior: unidade atual + menu com Trocar unidade e Sair.
+- Cadastro no Painel Mestre agora exige a primeira unidade do cliente.
+- A clínica/cliente principal não é mais criada automaticamente como unidade.
+- O cliente terá somente as unidades cadastradas pelo master.
+- Plano continua pertencendo ao cliente principal; unidades não possuem plano próprio.
+- A primeira unidade é criada no ato de salvar o cliente.
+- O master continua podendo adicionar, editar e excluir unidades adicionais.
+
+Fluxo correto:
+1. Master cadastra o cliente/clínica.
+2. Master informa a primeira unidade no campo de unidades.
+3. Master escolhe plano/status do cliente.
+4. Cliente acessa e escolhe somente as unidades cadastradas para ele.

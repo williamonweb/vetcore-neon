@@ -1,0 +1,5 @@
+Correção aplicada:
+- A troca de senha obrigatória agora acontece somente no primeiro acesso.
+- Após salvar a nova senha, o usuário fica marcado como primeiroAcesso=false e senhaProvisoria=false.
+- O cadastro do cliente no Painel Mestre não reativa a troca obrigatória quando o login já existe.
+- A troca volta a ser obrigatória apenas se o master gerar uma nova senha provisória.

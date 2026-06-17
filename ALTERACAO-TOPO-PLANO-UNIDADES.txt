@@ -1,0 +1,7 @@
+VetCore - alteração de topo e plano por cliente
+
+- O plano agora é tratado como informação do cliente principal, não da unidade.
+- Unidades exibem Plano do cliente na tela de seleção.
+- Topbar do sistema mostra Cliente, Unidade atual, Plano e Status.
+- O Painel Mestre permanece identificado como Painel Mestre.
+- As unidades continuam sendo apenas filiais/locais de atendimento.

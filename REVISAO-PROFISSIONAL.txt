@@ -1,0 +1,20 @@
+VetCore - Revisão profissional pré-GitHub/Vercel
+
+Status desta versão:
+- Base limpa para publicação.
+- Sem clínicas, clientes, profissionais, agendamentos ou orçamentos fictícios.
+- Login master mantido: williamgomes990@gmail.com.
+- Login master entra direto no Painel Mestre.
+- Cliente comum não vê lista geral de clínicas/clientes.
+- Cliente comum não cria clínica nem unidade.
+- Unidades são criadas, editadas e excluídas pelo Painel Mestre.
+- Cliente pode trocar unidade apenas quando o master vinculou mais de uma unidade ao cliente.
+- Configurações do cliente não exibem Cadastro de unidades.
+- Painel Mestre possui controle de cliente, plano, status, vencimento, acesso, WhatsApp/e-mail e unidades.
+- Senha provisória e troca obrigatória no primeiro acesso mantidas.
+- Envio de acesso por WhatsApp mantido.
+- Arquivos temporários de ajuste foram removidos do pacote.
+- Código JavaScript validado com node --check.
+
+Observação importante:
+Esta versão ainda usa localStorage. Para venda inicial e validação funciona bem, mas a segurança definitiva e o isolamento real entre clientes devem ser feitos na etapa Supabase.

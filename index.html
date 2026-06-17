@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="tituloPagina">VetCore</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="topbarSistema" class="topbar-sistema oculto">
+    <div class="topbar-sistema-esquerda">
+      <button class="topbar-logo-btn" onclick="irParaTelaInicialSistema()">
+        <img src="./logo-vetcore.png" alt="VetCore" class="topbar-logo-fixo" onerror="this.style.display='none'">
+      </button>
+    </div>
+
+    <div class="topbar-sistema-direita">
+      <button id="topbarUnidadeBtn" class="topbar-unidade-btn" onclick="alternarMenuUnidade()">
+        <span id="topbarNomeUnidade">Unidade</span>
+        <span class="topbar-seta">▾</span>
+      </button>
+
+      <div id="topbarMenuUnidade" class="topbar-menu-unidade oculto">
+        <button id="topbarTrocarClinicaBtn" onclick="voltarParaClinicas(); fecharMenuUnidade();">Trocar unidade</button>
+        <button onclick="sairSistema(); fecharMenuUnidade();">Sair</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+  <div id="telaLogin" class="tela tela-login-ultra">
+    <div class="login-layout-ultra">
+      <section class="login-brand-ultra">
+        <div class="login-brand-overlay-ultra"></div>
+        <div class="login-orb orb-1"></div>
+        <div class="login-orb orb-2"></div>
+        <div class="login-grid-glow"></div>
+
+        <div class="login-brand-content-ultra">
+          <span class="login-badge-ultra">Sistema veterinário profissional</span>
+
+          <img src="./logo-vetcore.png" alt="VetCore" class="login-logo-ultra" onerror="this.style.display='none'">
+
+          <div class="login-brand-copy-ultra">
+            <h1>Gestão inteligente para clínicas veterinárias.</h1>
+            <p>
+              Agenda, equipe, unidades e atendimento em uma experiência moderna,
+              forte e pronta para escalar.
+            </p>
+          </div>
+
+          <div class="login-highlights-ultra">
+            <div class="highlight-card-ultra">
+              <strong>Agilidade</strong>
+              <span>Fluxo rápido para recepção e equipe.</span>
+            </div>
+            <div class="highlight-card-ultra">
+              <strong>Organização</strong>
+              <span>Visual limpo, premium e profissional.</span>
+            </div>
+            <div class="highlight-card-ultra">
+              <strong>Escalável</strong>
+              <span>Base pronta para crescer e vender.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="login-form-ultra">
+        <div class="login-panel-ultra">
+          <div class="panel-top-ultra">
+            <span class="panel-kicker-ultra">Acesso seguro</span>
+            <h2 id="tituloLogin">Entrar no VetCore</h2>
+            <div id="subtituloLogin" class="subinfo premium-subinfo-ultra">Entre para acessar o VetCore</div>
+          </div>
+
+          <div class="login-fields-ultra">
+            <label class="field-ultra">
+              <span>E-mail</span>
+              <input type="text" id="usuario" placeholder="Digite seu e-mail ou usuário">
+            </label>
+
+            <label class="field-ultra">
+              <span>Senha</span>
+              <div class="password-wrap-ultra">
+                <input type="password" id="senha" placeholder="Digite sua senha">
+                <button type="button" class="toggle-pass-ultra" id="toggleSenha" aria-label="Mostrar senha">👁</button>
+              </div>
+            </label>
+
+            <div class="forgot-password-wrap-ultra">
+              <button type="button" class="link-btn-ultra" onclick="esqueceuSenha()">Esqueceu a senha?</button>
+            </div>
+
+            <div class="row-options-ultra">
+              <label class="remember-ultra">
+                <input type="checkbox" id="lembrarAcesso">
+                <span>Lembrar acesso</span>
+              </label>
+              <button type="button" class="link-btn-ultra">Acesso interno</button>
+            </div>
+
+            <button id="btnEntrarLogin" class="btn-login-ultra" onclick="fazerLogin()">
+              <span class="btn-login-text-ultra">Entrar</span>
+              <span class="btn-login-loader-ultra"></span>
+            </button>
+
+            <div class="status-box-ultra">
+              <span class="status-dot-ultra"></span>
+              Login premium integrado ao sistema principal.
+            </div>
+
+            <div id="loginFeedback" class="login-feedback-ultra"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+
+
+  <div id="telaClinica" class="tela tela-clinica-ultra oculto">
+    <div class="clinica-box-ultra">
+      <div class="clinica-topo-ultra">
+        <div class="clinic-logo-wrap-ultra">
+          <img src="./logo-vetcore.png" alt="VetCore" class="login-logo-ultra">
+        </div>
+        <h2>Escolha a unidade</h2>
+        <div class="subinfo premium-subinfo-ultra">Selecione a unidade para continuar</div>
+      </div>
+
+      <div id="clinicaGridDinamica" class="clinica-grid-ultra"></div>
+
+      <div class="clinica-rodape-ultra">
+        <button class="btn-secundario" onclick="sairSistema()">Voltar ao login</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="telaMenu" class="tela oculto tela-vetcore-dashboard-v2">
+    <aside class="vc2-sidebar">
+      <div class="vc2-logo-area">
+        <img src="./logo-vetcore.png" alt="VetCore" id="dashboardLogoPainel" class="vc2-logo" onerror="this.style.display='none'">
+        <div>
+          <strong data-vetcore-system-name>VetCore</strong>
+          <span>Sistema Veterinário</span>
+        </div>
+      </div>
+      <nav class="vc2-nav">
+        <button class="active" onclick="irParaTelaInicialSistema()"><span>⌂</span>Dashboard</button>
+        <button id="btnMenuAgendar" onclick="abrirTelaEscolhaVeterinario()"><span>＋</span>Agendar</button>
+        <button id="btnMenuVisualizar" onclick="abrirVisualizacao()"><span>▣</span>Agenda completa</button>
+        <button id="btnMenuLiberacao" onclick="abrirTelaLiberacao()"><span>◷</span>Disponibilidade</button>
+        <button onclick="abrirTelaAgendaExtra()"><span>✚</span>Agenda extra</button>
+        <button id="btnMenuFecharData" onclick="abrirTelaFecharHorarios()"><span>☒</span>Fechar horários</button>
+        <button id="btnMenuFecharRecorrente" onclick="abrirTelaFecharHorariosRecorrentes()"><span>↻</span>Bloqueio recorrente</button>
+        <button onclick="abrirTelaClientes && abrirTelaClientes()"><span>☷</span>Clientes</button>
+        <button id="btnMenuRelatorios" onclick="abrirTelaRelatorios()"><span>▥</span>Relatórios</button>
+        <button id="btnMenuConfiguracoes" onclick="abrirTelaConfiguracoes()"><span>⚙</span>Configurações</button>
+        <button id="btnMenuPainelMestre" class="oculto" onclick="abrirPainelMestre()"><span>★</span>Painel mestre</button>
+      </nav>
+      <div class="vc2-help-card">
+        <strong>Precisa de ajuda?</strong>
+        <span>Fale com o suporte</span>
+        <button onclick="abrirSuporte && abrirSuporte()">Abrir chamado</button>
+      </div>
+    </aside>
+
+    <main class="vc2-main">
+      <header class="vc2-topbar">
+        <div class="vc2-greeting">
+          <button class="vc2-menu-btn">☰</button>
+          <div>
+            <h2 id="vc2Saudacao">Olá, <span id="tituloMenu">Gravataí</span>! 👋</h2>
+            <p id="dataResumoMenu">Resumo do dia</p>
+            <div id="infoPlanoMenu" class="dashboard-plano-inline"></div>
+            <div id="infoMenu" class="subinfo dashboard-subinfo"></div>
+          </div>
+        </div>
+        <div class="vc2-top-actions">
+          <div class="vc2-select-box"><span>📍</span><div><small>Unidade</small><strong id="dashboardClinicNome">Onda Animal</strong></div></div>
+          <div class="vc2-clock"><strong id="vc2HoraAtual">--:--</strong><span id="vc2DataAtual">--/--/----</span></div>
+          <button class="vc2-bell" id="vc2BellPendencias" type="button" onclick="vetcoreAbrirPendenciasConfirmacao()" title="Pendências de confirmação">🔔<b id="vc2PendenciasBadge">0</b></button>
+          <div class="vc2-user"><b>G</b><div><strong id="vc2UnidadeUser">Gravataí</strong><span>Administrador</span></div></div>
+        </div>
+      </header>
+
+      <section class="vc2-kpi-row">
+        <div class="vc2-kpi"><i class="blue">🩺</i><div><span>Consultas hoje</span><strong id="menuTotalConsulta">0</strong><small id="vc2ConsultaSub">+0 confirmadas</small></div></div>
+        <div class="vc2-kpi"><i class="green">💉</i><div><span>Vacinas hoje</span><strong id="menuTotalVacina">0</strong><small id="vc2VacinaSub">+0 confirmadas</small></div></div>
+        <div class="vc2-kpi"><i class="purple">↻</i><div><span>Retornos hoje</span><strong id="menuTotalRetorno">0</strong><small id="vc2RetornoSub">+0 confirmados</small></div></div>
+        <div class="vc2-kpi"><i class="red">🐾</i><div><span>Castrações hoje</span><strong id="menuTotalCastracao">0</strong><small id="vc2CastracaoSub">0 inalatória</small></div></div>
+        <div class="vc2-kpi"><i class="orange">📋</i><div><span>Procedimentos</span><strong id="vc2ProcedimentosHoje">0</strong><small>Hoje</small></div></div>
+        <button class="vc2-agendar-card" onclick="abrirTelaEscolhaVeterinario()"><span>＋</span>Agendar<br>atendimento</button>
+      </section>
+
+      <section class="vc2-content-grid">
+        <div class="vc2-agenda-panel">
+          <div class="vc2-panel-title"><div><h3>📅 Agenda do dia</h3><span id="vc2AgendaData">Hoje</span></div><div><button onclick="abrirVisualizacao()">Ver agenda completa →</button></div></div>
+          <div id="agendaDiaVeterinarios" class="vc2-vet-columns"></div>
+          <div class="vc2-legenda"><span><b class="dot blue"></b>Consulta</span><span><b class="dot green"></b>Vacina</span><span><b class="dot purple"></b>Retorno</span><span><b class="dot red"></b>Castração</span><span><b class="dot orange"></b>Procedimento</span><span><b class="dot hollow"></b>Horário livre</span></div>
+        </div>
+        <aside class="vc2-right-panel">
+          <div class="vc2-alerts">
+            <h3>🔔 Alertas e pendências</h3>
+            <div id="statusOperacionalBox"></div>
+          </div>
+          <div class="vc2-next-returns">
+            <h3>Próximos retornos</h3>
+            <div id="rankingVetsDia"></div>
+            <button onclick="abrirVisualizacao()">Ver todos retornos →</button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="vc2-bottom-metrics">
+        <div><i>🗓️</i><span>Horários disponíveis hoje</span><strong id="vc2LivresHoje">0</strong><small>em todos os profissionais</small></div>
+        <div><i>⏱️</i><span>Taxa de ocupação</span><strong id="vc2OcupacaoHoje">0%</strong><small>média do dia</small></div>
+        <div><i>⭐</i><span>Avaliação da clínica</span><strong id="vc2AvaliacaoClinica">0</strong><small>Sem avaliações cadastradas</small></div>
+        <div><i>👥</i><span>Clientes atendidos (mês)</span><strong id="vc2ClientesMes">0</strong><small>agendamentos no mês</small></div>
+      </section>
+    </main>
+  </div>
+
+
+  <div id="telaConfiguracoes" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Configurações</h2>
+    <div class="subinfo">Ajuste a identidade, profissionais e usuários da unidade selecionada.</div>
+
+    <div class="config-home-grid config-home-grid-4">
+      <button class="config-home-card" onclick="abrirConfigSecao('identidade')">
+        <strong>Identidade do sistema</strong>
+        <span>Nome do sistema, endereço, CNPJ, contato e logo da clínica.</span>
+      </button>
+
+
+      <button class="config-home-card" onclick="abrirConfigSecao('profissionais')">
+        <strong>Profissionais da agenda</strong>
+        <span>Cadastre o profissional e já deixe a agenda pronta para uso.</span>
+      </button>
+
+      <button class="config-home-card" onclick="abrirConfigSecao('usuarios')">
+        <strong>Usuários e permissões</strong>
+        <span>Perfis prontos, senhas e permissões por função da equipe.</span>
+      </button>
+
+      <button class="config-home-card" onclick="abrirConfigPlaceholder('horarios')">
+        <strong>Horários de atendimento</strong>
+        <span>Atalhos para disponibilidade, agenda extra, fechar horários e bloqueios.</span>
+      </button>
+
+      <button class="config-home-card" onclick="abrirConfigPlaceholder('plano')">
+        <strong>Plano e assinatura</strong>
+        <span>Plano atual, vencimento, recursos, PIX/boleto e histórico.</span>
+      </button>
+
+      <button class="config-home-card" onclick="abrirConfigPlaceholder('preferencias')">
+        <strong>Preferências do sistema</strong>
+        <span>Ajuste tela inicial, limite da agenda, visual e ferramentas locais.</span>
+      </button>
+
+      <button id="btnAcessoPainelMestreConfig" class="config-home-card oculto" onclick="abrirPainelMestre()">
+        <strong>Painel mestre</strong>
+        <span>Controle geral dos clientes, plano, status, vencimento e acesso.</span>
+      </button>
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+
+  <div id="telaConfigPlaceholder" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2 id="configPlaceholderTitulo">Configuração</h2>
+    <div id="configPlaceholderSubtitulo" class="subinfo"></div>
+    <div id="configPlaceholderConteudo" class="config-section-content"></div>
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarConfiguracoes()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaConfigIdentidade" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Identidade do sistema</h2>
+    <div class="subinfo">Configure a apresentação visual e os dados institucionais.</div>
+
+    <div class="config-bloco">
+      <label class="config-label">Nome do sistema</label>
+      <input type="text" id="cfgNomeSistema" placeholder="Nome do sistema">
+
+      <label class="config-label">Endereço da clínica / unidade</label>
+      <input type="text" id="cfgEnderecoClinica" placeholder="Rua, número, bairro, cidade">
+
+      <label class="config-label">CNPJ</label>
+      <input type="text" id="cfgCnpjClinica" placeholder="00.000.000/0000-00">
+
+      <label class="config-label">Contato</label>
+      <input type="text" id="cfgContatoClinica" placeholder="(00) 00000-0000">
+
+      <label class="config-label">Logo da clínica</label>
+      <input type="file" id="cfgLogoArquivo" accept="image/*" onchange="aoSelecionarLogoConfiguracao(event)">
+
+      <div class="preview-logo-box">
+        <img id="previewLogoConfiguracao" class="preview-logo" alt="Prévia do logo da clínica">
+      </div>
+
+      <div class="linha-botoes">
+        <button class="btn-verde" onclick="salvarConfiguracoesSistema()">Salvar identidade</button>
+        <button class="btn-laranja" onclick="restaurarLogoPadrao()">Restaurar logo da clínica</button>
+      </div>
+
+      <div class="config-card" style="margin-top:14px;">
+        <strong>Assinatura da plataforma:</strong><br>
+        O logo VetCore fica fixo no topo da plataforma.<br>
+        O logo configurável aqui é o da clínica, usado nas telas operacionais e ao lado de “Painel principal”.
+      </div>
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarConfiguracoes()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaConfigClinicas" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Cadastro de unidades</h2>
+    <div class="subinfo">Cadastre filiais/unidades da mesma clínica e mantenha tudo organizado.</div>
+
+    <div class="config-bloco">
+      <div class="usuarios-form-grid">
+        <input type="text" id="novaClinicaChave" placeholder="Identificador interno (ex: centro)">
+        <input type="text" id="novaClinicaNome" placeholder="Nome da unidade / filial">
+        <button class="btn-verde" type="button" onclick="adicionarClinica()">Cadastrar unidade</button>
+      </div>
+
+      <div class="subinfo config-subinfo-left">
+        Para clientes, basta informar o nome da unidade. O identificador interno é gerado automaticamente.
+      </div>
+
+      <div id="listaClinicasConfiguracao" class="config-card">Nenhuma clínica cadastrada.</div>
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarConfiguracoes()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaConfigProfissionais" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Cadastro de profissionais</h2>
+    <div class="subinfo">Cadastre quem atende em cada unidade para criar a agenda desse profissional.</div>
+
+    <div class="config-bloco">
+      <div class="linha-botoes linha-botoes-between">
+        <button class="btn-verde" type="button" onclick="abrirModalNovoProfissional()">+ Novo profissional</button>
+      </div>
+
+      <div class="subinfo config-subinfo-left">
+        O cadastro agora abre em modal e permite configurar dias e horários diferentes por serviço. Castração e procedimentos usam janela fixa de chegada, sem escolha de horário individual, com botão para alterar início e término.
+      </div>
+
+      <div class="linha-botoes">
+        <select id="filtroProfissionaisClinica" onchange="renderizarListaProfissionaisConfiguracao()"></select>
+      </div>
+
+      <div id="listaProfissionaisConfiguracao" class="config-card">Nenhum profissional cadastrado.</div>
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarConfiguracoes()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaConfigUsuarios" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Usuários e permissões</h2>
+    <div class="subinfo">Cadastre acessos, perfis e permissões do sistema.</div>
+
+    <div class="config-bloco">
+      <div class="usuarios-form-grid">
+        <input type="text" id="novoUsuario" placeholder="E-mail do usuário">
+        <input type="password" id="novaSenha" placeholder="Senha">
+        <select id="novoPerfil" onchange="preencherPermissoesPerfilSelecionado()">
+          <option value="admin">Administrador da clínica</option>
+          <option value="recepcao" selected>Recepção</option>
+          <option value="veterinario">Veterinário</option>
+          <option value="gestor">Gestor</option>
+          <option value="financeiro">Financeiro</option>
+          <option value="atendente">Atendente</option>
+          <option value="leitura">Somente leitura</option>
+        </select>
+      </div>
+
+      <div class="config-card" style="margin-top:12px;">
+        <strong>Perfil selecionado:</strong>
+        <span id="descricaoPerfilSelecionado">Recepção: agenda, clientes e retornos operacionais.</span>
+      </div>
+
+      <button class="btn-verde" onclick="adicionarUsuario()">Cadastrar usuário</button>
+
+      <div class="tabela-wrapper">
+        <table class="tabela-linhas">
+          <thead>
+            <tr>
+              <th>E-mail</th>
+              <th>Perfil</th>
+              <th>Permissões</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="listaUsuariosConfiguracao"></tbody>
+        </table>
+      </div>
+
+      <div class="relatorio-secao">
+        <h3>Permissões do usuário</h3>
+        <div class="subinfo config-subinfo-left">Selecione um usuário na lista para editar o que ele pode ver e fazer.</div>
+        <div id="usuarioSelecionadoPermissoes" class="config-card">Nenhum usuário selecionado.</div>
+
+        <div class="permissoes-grid">
+          <label class="dia-item"><input type="checkbox" id="permAgendar"> Ver Agendar</label>
+          <label class="dia-item"><input type="checkbox" id="permVisualizar"> Ver Visualizar agendamentos</label>
+          <label class="dia-item"><input type="checkbox" id="permRelatorios"> Ver Relatórios</label>
+          <label class="dia-item"><input type="checkbox" id="permBloqueioData"> Ver Fechar horários por data</label>
+          <label class="dia-item"><input type="checkbox" id="permBloqueioRecorrente"> Ver Bloqueio recorrente</label>
+          <label class="dia-item"><input type="checkbox" id="permAgendaExtra"> Ver Agenda extra</label>
+          <label class="dia-item"><input type="checkbox" id="permConfiguracoes"> Ver Configurações</label>
+          <label class="dia-item"><input type="checkbox" id="permEditarAgendamento"> Editar agendamentos</label>
+          <label class="dia-item"><input type="checkbox" id="permExcluirAgendamento"> Excluir agendamentos</label>
+          <label class="dia-item"><input type="checkbox" id="permConfirmarAgendamento"> Confirmar consultas</label>
+          <label class="dia-item"><input type="checkbox" id="permCadastrarUsuarios"> Cadastrar usuários</label>
+        </div>
+
+        <div class="linha-botoes">
+          <button class="btn-verde" onclick="salvarPermissoesUsuarioSelecionado()">Salvar permissões</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarConfiguracoes()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaEscolhaVeterinario"
+ class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Escolha o veterinário</h2>
+    <div id="infoEscolhaVet" class="subinfo"></div>
+
+
+    <div id="listaVetsAgendar" class="grade-vets"></div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaServicosVet" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2 id="tituloServicosVet">Serviços do veterinário</h2>
+    <div id="infoServicosVet" class="subinfo"></div>
+
+    <div id="listaServicosVet" class="grade-servicos-vet"></div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarEscolhaVeterinario()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaLiberacao" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Liberar dias de atendimento</h2>
+    <div id="infoLiberacao" class="subinfo"></div>
+
+    <select id="libVet" onchange="aoMudarVetLiberacao()">
+      <option value="">Escolha o veterinário</option>
+    </select>
+
+    <select id="libServico" onchange="aoMudarServicoLiberacao()">
+      <option value="">Escolha o serviço</option>
+    </select>
+
+    <div class="dias-grid">
+      <label class="dia-item"><input type="checkbox" id="dia1"> Segunda</label>
+      <label class="dia-item"><input type="checkbox" id="dia2"> Terça</label>
+      <label class="dia-item"><input type="checkbox" id="dia3"> Quarta</label>
+      <label class="dia-item"><input type="checkbox" id="dia4"> Quinta</label>
+      <label class="dia-item"><input type="checkbox" id="dia5"> Sexta</label>
+      <label class="dia-item"><input type="checkbox" id="dia6"> Sábado</label>
+      <label class="dia-item"><input type="checkbox" id="dia0"> Domingo</label>
+    </div>
+
+    <button onclick="salvarConfiguracaoDias()">Salvar liberação</button>
+
+    <div id="configAtual" class="config-card">Selecione veterinário e serviço para ver a configuração atual.</div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaFecharHorarios" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Fechar horários</h2>
+    <div id="infoFecharHorarios" class="subinfo"></div>
+
+    <select id="fecharVet" onchange="aoMudarVetFecharHorarios()">
+      <option value="">Escolha o veterinário</option>
+    </select>
+
+    <select id="fecharServico" onchange="aoMudarServicoFecharHorarios()">
+      <option value="">Escolha o serviço</option>
+    </select>
+
+    <input type="date" id="fecharData" onchange="aoMudarDataFecharHorarios()">
+
+    <label class="checkbox-unico">
+      <input type="checkbox" id="fecharDiaInteiro" onchange="alternarFechamentoDiaInteiro()">
+      Fechar o dia inteiro nesta data
+    </label>
+
+    <div id="horariosFecharContainer" class="horarios-grid"></div>
+
+    <button onclick="salvarHorariosFechadosPorData()">Salvar fechamento</button>
+
+    <div id="configFecharAtual" class="config-card">Selecione veterinário, serviço e data para ver a configuração.</div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  
+  </div>
+
+  <div id="telaFecharHorariosRecorrentes" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Bloqueio recorrente</h2>
+    <div id="infoFecharHorariosRecorrentes" class="subinfo"></div>
+
+    <select id="recVet" onchange="aoMudarVetRecorrente()">
+      <option value="">Escolha o veterinário</option>
+    </select>
+
+    <select id="recServico" onchange="aoMudarServicoRecorrente()">
+      <option value="">Escolha o serviço</option>
+    </select>
+
+    <select id="recDiaSemana" onchange="aoMudarDiaRecorrente()">
+      <option value="">Escolha o dia da semana</option>
+      <option value="1">Segunda</option>
+      <option value="2">Terça</option>
+      <option value="3">Quarta</option>
+      <option value="4">Quinta</option>
+      <option value="5">Sexta</option>
+      <option value="6">Sábado</option>
+      <option value="0">Domingo</option>
+    </select>
+
+    <label class="checkbox-unico">
+      <input type="checkbox" id="recDiaInteiro" onchange="alternarRecorrenteDiaInteiro()">
+      Fechar o dia inteiro toda semana
+    </label>
+
+    <div id="horariosRecorrentesContainer" class="horarios-grid"></div>
+
+    <button onclick="salvarHorariosRecorrentes()">Salvar bloqueio recorrente</button>
+
+    <div id="configRecorrenteAtual" class="config-card">Selecione veterinário, serviço e dia da semana para ver a configuração.</div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaAgendarGeral" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2 id="tituloAgendarGeral">Agendar atendimento</h2>
+    <div id="infoAgendarGeral" class="subinfo"></div>
+
+    <div id="boxNomeProcedimentoGeral" class="campo-procedimento oculto">
+      <input type="text" id="nomeProcedimentoGeral" placeholder="Nome do procedimento a ser feito">
+      <div class="ajuda-campo">Exemplo: limpeza de ferida, retirada de pontos, curativo, cirurgia específica etc.</div>
+    </div>
+
+    <select id="dataGeral" onchange="carregarHorariosDisponiveisGeral()">
+      <option value="">Selecione uma data disponível</option>
+    </select>
+
+    <select id="horaGeral">
+      <option value="">Selecione um horário</option>
+    </select>
+
+    <input type="text" id="tutorGeral" placeholder="Nome do tutor">
+    <input type="text" id="telefoneGeral" placeholder="Telefone">
+    <input type="text" id="petGeral" placeholder="Nome do pet">
+
+    <select id="especieGeral">
+      <option value="">Selecione a espécie</option>
+      <option value="Felino">Felino</option>
+      <option value="Canino">Canino</option>
+    </select>
+
+    <select id="sexoGeral">
+      <option value="">Selecione o sexo</option>
+      <option value="Macho">Macho</option>
+      <option value="Fêmea">Fêmea</option>
+    </select>
+
+    <textarea id="obsGeral" placeholder="Observações"></textarea>
+
+    <button id="btnSalvarGeral" onclick="salvarAgendamentoGeral()">Salvar agendamento</button>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarServicosVet()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaAgendarCastracao" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Agendar castração</h2>
+    <div id="infoCastracao" class="subinfo"></div>
+
+    <select id="dataCastracao">
+      <option value="">Selecione uma data disponível</option>
+    </select>
+
+    <input type="text" id="nomeTutor" placeholder="Nome do tutor">
+    <input type="text" id="telefoneTutor" placeholder="Telefone">
+
+    <select id="especieAnimal" onchange="atualizarHorarioPadrao()">
+      <option value="">Selecione canino ou felino</option>
+      <option value="Felino">Felino</option>
+      <option value="Canino">Canino</option>
+    </select>
+
+    <div class="caixa-info" id="horarioPadrao">
+      Horário padrão da castração aparecerá aqui.
+    </div>
+
+    <select id="sexoAnimal">
+      <option value="">Selecione macho ou fêmea</option>
+      <option value="Macho">Macho</option>
+      <option value="Fêmea">Fêmea</option>
+    </select>
+
+    <input type="text" id="racaAnimal" placeholder="Raça">
+    <input type="text" id="pesoAnimal" placeholder="Peso">
+
+    <select id="formaAgendamento">
+      <option value="">Forma de agendamento</option>
+      <option value="WhatsApp">WhatsApp</option>
+      <option value="Telefone">Telefone</option>
+      <option value="Presencial">Presencial</option>
+      <option value="Instagram">Instagram</option>
+      <option value="Indicação">Indicação</option>
+    </select>
+
+    <textarea id="observacoesAgendamento" placeholder="Observações"></textarea>
+
+    <button id="btnSalvarCastracao" onclick="salvarCastracao()">Salvar agendamento</button>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarServicosVet()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaServicoIndisponivel" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2 id="tituloIndisponivel">Serviço</h2>
+    <div id="textoServicoIndisponivel" class="caixa-info">
+      Esse serviço ainda vai ser encaixado na mesma base.
+    </div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarServicosVet()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaVisualizar" class="tela tela-visualizar-atendimentos oculto">
+    <div class="visualizar-hero">
+      <div class="visualizar-hero-logo">
+        <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <span class="visualizar-kicker">Agenda VetCore</span>
+        <h2>Visualizar atendimentos</h2>
+        <div id="infoVisualizacao" class="subinfo"></div>
+      </div>
+    </div>
+
+    <div class="painel-filtros-atendimentos">
+      <label>
+        <span>Data</span>
+        <input type="date" id="filtroDataLista" onchange="carregarListaAgendamentos()">
+      </label>
+
+      <label>
+        <span>Serviço</span>
+        <select id="filtroServicoLista" onchange="aoMudarFiltrosVisualizacao()">
+          <option value="Todos">Todos os serviços</option>
+          <option value="Castração">Castração</option>
+          <option value="Consulta">Consulta</option>
+          <option value="Vacina">Vacina</option>
+          <option value="Retorno">Retorno</option>
+          <option value="Reconsulta">Reconsulta</option>
+          <option value="Procedimento">Procedimento</option>
+          <option value="Cirurgia">Cirurgia</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Veterinário</span>
+        <select id="filtroVeterinarioLista" onchange="carregarListaAgendamentos()">
+          <option value="Todos">Todos os veterinários</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Buscar tutor, pet ou telefone</span>
+        <input type="text" id="buscaAtendimentoLista" placeholder="Ex.: Maria, Thor, 9999..." oninput="carregarListaAgendamentos()">
+      </label>
+    </div>
+
+    <div id="resumoDia" class="resumo-dia resumo-atendimentos oculto">
+      <div class="resumo-card resumo-destaque">
+        <small>Total</small>
+        <div id="totalDia" class="resumo-numero">0</div>
+        <span>atendimentos no filtro</span>
+      </div>
+      <div class="resumo-card">
+        <small>Consulta</small>
+        <div id="totalConsultas" class="resumo-numero">0</div>
+        <span>agenda normal</span>
+      </div>
+      <div class="resumo-card">
+        <small>Vacina</small>
+        <div id="totalVacinas" class="resumo-numero">0</div>
+        <span>mesmo horário da consulta</span>
+      </div>
+      <div class="resumo-card">
+        <small>Retorno</small>
+        <div id="totalRetornos" class="resumo-numero">0</div>
+        <span>separado no final</span>
+      </div>
+      <div class="resumo-card">
+        <small>Procedimentos</small>
+        <div id="totalProcedimentos" class="resumo-numero">0</div>
+        <span>janelas fixas</span>
+      </div>
+      <div class="resumo-card resumo-mini">
+        <small>Felinos</small>
+        <div id="totalFelinos" class="resumo-numero">0</div>
+      </div>
+      <div class="resumo-card resumo-mini">
+        <small>Caninos</small>
+        <div id="totalCaninos" class="resumo-numero">0</div>
+      </div>
+      <div class="resumo-card resumo-mini">
+        <small>Machos</small>
+        <div id="totalMachos" class="resumo-numero">0</div>
+      </div>
+      <div class="resumo-card resumo-mini">
+        <small>Fêmeas</small>
+        <div id="totalFemeas" class="resumo-numero">0</div>
+      </div>
+    </div>
+
+    <div class="legenda-atendimentos">
+      <span><b class="dot dot-consulta"></b>Consulta</span>
+      <span><b class="dot dot-vacina"></b>Vacina</span>
+      <span><b class="dot dot-retorno"></b>Retorno</span>
+      <span><b class="dot dot-procedimento"></b>Procedimento</span>
+      <span><b class="dot dot-livre"></b>Livre</span>
+    </div>
+
+    <div id="listaAgendamentos" class="lista-atendimentos-bonita"></div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+  <div id="telaRelatorios" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Relatórios</h2>
+    <div id="infoRelatorios" class="subinfo"></div>
+
+    <div class="relatorio-secao">
+      <h3>Relatório diário de comparecimento</h3>
+      <input type="date" id="dataRelatorio" onchange="carregarRelatorioPorData()">
+    </div>
+
+    <div id="resumoRelatorio" class="relatorio-grid oculto">
+      <div class="relatorio-card">
+        <div id="relTotal" class="relatorio-numero">0</div>
+        <div>Total do dia</div>
+      </div>
+      <div class="relatorio-card">
+        <div id="relConsultas" class="relatorio-numero">0</div>
+        <div>Consultas</div>
+      </div>
+      <div class="relatorio-card">
+        <div id="relVacinas" class="relatorio-numero">0</div>
+        <div>Vacinas</div>
+      </div>
+      <div class="relatorio-card">
+        <div id="relCastracoes" class="relatorio-numero">0</div>
+        <div>Castrações</div>
+      </div>
+    </div>
+
+    <div id="relatorioPorVet" class="relatorio-secao oculto">
+      <h3>Agendamentos por veterinário</h3>
+      <div id="relatorioListaVet"></div>
+    </div>
+
+    <div id="relatorioDetalhes" class="relatorio-secao oculto">
+      <h3>Resumo do dia</h3>
+      <div id="relatorioListaDetalhes"></div>
+    </div>
+
+    <div id="relatorioPendenciasCompareceu" class="relatorio-secao oculto">
+      <h3>Pacientes sem "Compareceu"</h3>
+      <div class="subinfo">Use esta lista para entender o que houve e decidir se precisa reagendar.</div>
+      <div id="relatorioListaPendenciasCompareceu"></div>
+    </div>
+
+    <div class="relatorio-secao">
+      <h3>Exportar clientes em PDF</h3>
+      <div class="subinfo">Selecione um dia ou um período para baixar a lista em PDF com tabela pronta.</div>
+      <div class="relatorio-filtros-pdf">
+        <div class="campo-relatorio">
+          <label for="relDataInicio">Data inicial</label>
+          <input type="date" id="relDataInicio">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relDataFim">Data final</label>
+          <input type="date" id="relDataFim">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relClinica">Clínica</label>
+          <select id="relClinica">
+            <option value="Atual">Clínica atual</option>
+            <option value="Todas">Todas as clínicas</option>
+          </select>
+        </div>
+      </div>
+      <div class="relatorio-acoes-pdf">
+        <button class="btn-verde" type="button" onclick="preencherPeriodoHojeRelatorio()">Hoje</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoSemanaRelatorio()">7 dias</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoMesRelatorio()">30 dias</button>
+        <button class="btn-azul" type="button" onclick="gerarRelatoriosPremium()">Atualizar lista</button>
+        <button class="btn-verde" type="button" onclick="baixarRelatorioClientesPDF()">Baixar PDF</button>
+      </div>
+      <div id="relResumoExecutivo" class="relatorio-caixa"></div>
+      <div class="relatorio-grid-premium">
+        <div class="relatorio-secao">
+          <h3>Indicadores do período</h3>
+          <div id="relIndicadoresPeriodo"></div>
+        </div>
+        <div class="relatorio-secao">
+          <h3>Veterinários</h3>
+          <div id="relTopVeterinarios"></div>
+        </div>
+        <div class="relatorio-secao">
+          <h3>Serviços</h3>
+          <div id="relTopServicos"></div>
+        </div>
+        <div class="relatorio-secao">
+          <h3>Espécies e sexo</h3>
+          <div id="relEspeciesSexo"></div>
+        </div>
+        <div class="relatorio-secao">
+          <h3>Confirmações</h3>
+          <div id="relConfirmacoes"></div>
+        </div>
+      </div>
+      <div class="relatorio-secao">
+        <h3>Prévia da lista que vai para o PDF</h3>
+        <div id="relatorioTabelaClientes"></div>
+      </div>
+    </div>
+
+
+    <div class="relatorio-secao relatorio-castracao-periodo">
+      <h3>Relatório de castrações por período</h3>
+      <div class="subinfo">Filtre as castrações por período, veterinário, espécie, sexo e inalatória.</div>
+      <div class="relatorio-filtros-pdf relatorio-filtros-castracao">
+        <div class="campo-relatorio">
+          <label for="relCastInicio">Data inicial</label>
+          <input type="date" id="relCastInicio">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relCastFim">Data final</label>
+          <input type="date" id="relCastFim">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relCastVeterinario">Veterinário</label>
+          <select id="relCastVeterinario"><option value="Todos">Todos</option></select>
+        </div>
+        <div class="campo-relatorio">
+          <label for="relCastEspecie">Espécie</label>
+          <select id="relCastEspecie">
+            <option value="Todos">Todas</option>
+            <option value="Canino">Canino</option>
+            <option value="Felino">Felino</option>
+          </select>
+        </div>
+        <div class="campo-relatorio">
+          <label for="relCastSexo">Sexo</label>
+          <select id="relCastSexo">
+            <option value="Todos">Todos</option>
+            <option value="Macho">Macho</option>
+            <option value="Fêmea">Fêmea</option>
+          </select>
+        </div>
+        <div class="campo-relatorio">
+          <label for="relCastInalatoria">Inalatória</label>
+          <select id="relCastInalatoria">
+            <option value="Todos">Todas</option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+          </select>
+        </div>
+      </div>
+      <div class="relatorio-acoes-pdf">
+        <button class="btn-verde" type="button" onclick="preencherPeriodoHojeCastracao()">Hoje</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoSemanaCastracao()">7 dias</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoMesCastracao()">30 dias</button>
+        <button class="btn-azul" type="button" onclick="gerarRelatorioCastracoesPeriodo()">Gerar relatório</button>
+        <button class="btn-verde" type="button" onclick="imprimirRelatorioCastracoesPeriodo()">Imprimir / PDF</button>
+        <button class="btn-secundario" type="button" onclick="exportarRelatorioCastracoesCSV()">Exportar CSV</button>
+      </div>
+      <div id="relCastResumo" class="relatorio-caixa"></div>
+      <div id="relCastTabela" class="tabela-scroll"></div>
+    </div>
+
+
+    <div class="relatorio-secao relatorio-faltas-periodo">
+      <h3>Relatório de faltas por período</h3>
+      <div class="subinfo">Mostra somente atendimentos marcados como <b>Não veio</b>.</div>
+      <div class="relatorio-filtros-pdf relatorio-filtros-faltas">
+        <div class="campo-relatorio">
+          <label for="relFaltaInicio">Data inicial</label>
+          <input type="date" id="relFaltaInicio">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relFaltaFim">Data final</label>
+          <input type="date" id="relFaltaFim">
+        </div>
+        <div class="campo-relatorio">
+          <label for="relFaltaVeterinario">Veterinário</label>
+          <select id="relFaltaVeterinario"><option value="Todos">Todos</option></select>
+        </div>
+        <div class="campo-relatorio">
+          <label for="relFaltaServico">Serviço</label>
+          <select id="relFaltaServico">
+            <option value="Todos">Todos</option>
+            <option value="Consulta">Consulta</option>
+            <option value="Vacina">Vacina</option>
+            <option value="Retorno">Retorno/Reconsulta</option>
+            <option value="Castração">Castração</option>
+            <option value="Procedimento">Procedimento/Cirurgia</option>
+          </select>
+        </div>
+        <div class="campo-relatorio">
+          <label for="relFaltaBusca">Buscar</label>
+          <input type="text" id="relFaltaBusca" placeholder="Tutor, pet ou telefone">
+        </div>
+      </div>
+      <div class="relatorio-acoes-pdf">
+        <button class="btn-verde" type="button" onclick="preencherPeriodoHojeFaltas()">Hoje</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoSemanaFaltas()">7 dias</button>
+        <button class="btn-secundario" type="button" onclick="preencherPeriodoMesFaltas()">30 dias</button>
+        <button class="btn-azul" type="button" onclick="gerarRelatorioFaltasPeriodo()">Gerar relatório</button>
+        <button class="btn-verde" type="button" onclick="imprimirRelatorioFaltasPeriodo()">Imprimir / PDF</button>
+        <button class="btn-secundario" type="button" onclick="exportarRelatorioFaltasCSV()">Exportar CSV</button>
+      </div>
+      <div id="relFaltaResumo" class="relatorio-caixa"></div>
+      <div id="relFaltaTabela" class="tabela-scroll"></div>
+    </div>
+
+    <div id="relatorioVazio" class="vazio">Escolha uma data para visualizar os relatórios.</div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+
+  <div id="telaAgendaExtra" class="tela tela-pequena oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Agenda extra / exceção</h2>
+    <div id="infoAgendaExtra" class="subinfo"></div>
+
+    <select id="extraVet" onchange="aoMudarVetAgendaExtra()">
+      <option value="">Escolha o veterinário</option>
+    </select>
+
+    <select id="extraServico">
+      <option value="">Escolha o serviço</option>
+    </select>
+
+    <input type="date" id="extraData" onchange="carregarExcecaoAgendaAtual()">
+
+    <select id="extraTipo">
+      <option value="">Escolha a ação</option>
+      <option value="abrir">Abrir atendimento nesta data</option>
+      <option value="fechar">Fechar atendimento nesta data</option>
+      <option value="normal">Voltar para regra normal</option>
+    </select>
+
+    <button onclick="salvarExcecaoAgenda()">Salvar exceção</button>
+
+    <div id="configAgendaExtraAtual" class="config-card">Selecione veterinário, serviço e data para ver a configuração.</div>
+
+    <div class="rodape-acoes">
+      <button class="btn-secundario" onclick="voltarMenu()">Voltar</button>
+    </div>
+  </div>
+
+
+
+  
+  <button id="suporteFlutuante" class="suporte-flutuante" type="button" onclick="abrirSuporteModal()" aria-label="Abrir suporte" title="Suporte VetCore">
+    <span class="suporte-icone">💬</span>
+  </button>
+
+  <aside id="suporteModal" class="suporte-chat oculto" aria-label="Painel de suporte">
+    <div class="suporte-chat-card">
+      <div class="suporte-chat-topo">
+        <div class="suporte-chat-brand">
+          <img src="./logo-vetcore.png" alt="VetCore" class="suporte-chat-logo" onerror="this.style.display='none'">
+          <div>
+            <strong>Suporte VetCore</strong>
+            <span>Atendimento dentro do sistema</span>
+          </div>
+        </div>
+        <button class="suporte-fechar" type="button" onclick="fecharSuporteModal()">&times;</button>
+      </div>
+
+      <div class="suporte-chat-boasvindas">
+        <h3>Olá! Como podemos ajudar?</h3>
+        <p>Você pode conversar por aqui e usar os atalhos rápidos abaixo.</p>
+      </div>
+
+      <div class="suporte-chat-atalhos">
+        <button type="button" onclick="enviarAtalhoSuporte('Preciso de ajuda com a agenda')">Agenda</button>
+        <button type="button" onclick="enviarAtalhoSuporte('Preciso de ajuda com cadastro de profissionais')">Profissionais</button>
+        <button type="button" onclick="enviarAtalhoSuporte('Preciso de ajuda com clínicas')">Clínicas</button>
+      </div>
+
+      <div id="suporteMensagens" class="suporte-chat-mensagens"></div>
+
+      <div class="suporte-chat-input-area">
+        <input id="suporteInput" type="text" placeholder="Envie uma mensagem" onkeydown="if(event.key==='Enter'){event.preventDefault(); enviarMensagemSuporte();}">
+        <button type="button" class="suporte-enviar" onclick="enviarMensagemSuporte()">➤</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+
+
+
+  <div id="telaPainelMestre" class="tela oculto">
+    <img src="./logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <h2>Painel Mestre VetCore</h2>
+    <div class="subinfo">Área administrativa exclusiva do proprietário do sistema.</div>
+
+    <div class="painel-mestre-grid">
+      <div class="quadro">
+        <h3>Cadastro e controle</h3>
+
+        <label>Nome da clínica</label>
+        <input type="text" id="masterNomeClinica" placeholder="Ex.: Clínica Modelo">
+
+        <label>Responsável</label>
+        <input type="text" id="masterResponsavel" placeholder="Ex.: Responsável da clínica">
+
+        <label>WhatsApp</label>
+        <input type="text" id="masterWhatsapp" placeholder="Ex.: 51999999999">
+
+        <label>E-mail</label>
+        <input type="email" id="masterEmail" placeholder="Ex.: contato@clinica.com">
+
+        <label>Plano</label>
+        <select id="masterPlano">
+          <option value="demo">Demonstração</option>
+          <option value="essencial">Essencial</option>
+          <option value="profissional">Profissional</option>
+          <option value="premium">Premium</option>
+        </select>
+
+        <label>Status</label>
+        <select id="masterStatus">
+          <option value="demo">Demo</option>
+          <option value="ativo">Ativo</option>
+          <option value="vencido">Vencido</option>
+          <option value="suspenso">Suspenso</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+
+        <label>Vencimento</label>
+        <input type="date" id="masterVencimento">
+
+        <label>Observações</label>
+        <textarea id="masterObservacoes" placeholder="Anotações internas sobre o cliente"></textarea>
+
+        <div class="config-card" id="masterUnidadesBox" style="margin-top:12px;">
+          <div style="font-weight:700; margin-bottom:8px;">Unidades do cliente</div>
+          <div class="subinfo" style="margin-bottom:10px;">Cadastre filiais/unidades vinculadas a este cliente. O cliente só poderá trocar entre estas unidades.</div>
+          <div id="masterListaUnidadesCliente" class="lista-clientes-mestre"></div>
+          <div class="linha-botoes" style="margin-top:10px;">
+            <input type="text" id="masterNovaUnidadeNome" placeholder="Ex.: Unidade Centro" style="flex:1; min-width:220px;">
+            <button class="btn-secundario" type="button" onclick="adicionarUnidadeClientePainel()">Adicionar unidade</button>
+          </div>
+        </div>
+
+        <div class="config-card" style="margin-top:12px;">
+          <div style="font-weight:700; margin-bottom:8px;">Acesso gerado para o cliente</div>
+          <div class="cliente-mestre-meta">
+            <div><strong>Login:</strong> <span id="masterLoginGerado">-</span></div>
+            <div><strong>Senha:</strong> <span id="masterSenhaGerada">-</span></div>
+          </div>
+          <div class="linha-botoes" style="margin-top:10px;">
+            <button class="btn-secundario" type="button" onclick="copiarCredenciaisCliente()">Copiar credenciais</button>
+            <button class="btn-secundario" type="button" onclick="enviarEmailCredenciaisCliente()">Preparar e-mail</button>
+            <button class="btn-secundario" type="button" onclick="enviarWhatsappCredenciaisCliente()">Enviar por WhatsApp</button>
+            <button class="btn-secundario" type="button" onclick="regenerarSenhaClientePainel()">Gerar nova senha</button>
+          </div>
+        </div>
+
+        <div class="linha-botoes">
+          <button class="btn-verde" type="button" onclick="salvarClientePainelMestre()">Salvar cliente</button>
+          <button class="btn-secundario" type="button" onclick="limparFormularioPainelMestre()">Novo cadastro</button>
+        </div>
+      </div>
+
+      <div class="quadro">
+        <h3>Resumo geral</h3>
+        <div id="resumoPainelMestre" class="cards-resumo-mestre"></div>
+
+        <div class="linha-botoes">
+          <button class="btn-secundario" type="button" onclick="mostrarTela('telaMenu')">Voltar ao menu</button>
+        </div>
+
+        <div class="subinfo" style="margin-top:10px;">
+          Dica: ao salvar um cliente, o plano também é sincronizado com o controle de planos do sistema.
+        </div>
+      </div>
+    </div>
+
+    <div class="quadro">
+      <div class="painel-mestre-topo-lista">
+        <h3>Clientes cadastrados</h3>
+        <input type="text" id="filtroPainelMestre" placeholder="Buscar clínica, responsável ou status" oninput="renderizarPainelMestre()">
+      </div>
+      <div id="listaClientesPainelMestre" class="lista-clientes-mestre"></div>
+    </div>
+  </div>
+
+  <script src="script-planos-vetcore.js"></script>
+  <script src="painel-mestre.js"></script>
+
+<div id="modalUpgradeVetCore" class="modal oculto">
+  <div class="modal-box modal-upgrade-vetcore">
+    <img src="./logo.png" alt="Logo VetCore" class="logo" onerror="this.style.display='none'">
+    <h3>🚀 Você atingiu o limite da demonstração</h3>
+    <p>
+      Para continuar cadastrando profissionais e expandir sua clínica, faça upgrade para o plano completo da VetCore.
+    </p>
+    <div class="linha-botoes">
+      <button type="button" class="btn-verde" onclick="abrirWhatsUpgradeVetCore()">Fazer upgrade</button>
+      <button type="button" class="btn-secundario" onclick="fecharModalUpgradeVetCore()">Agora não</button>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+
+<!-- VetCore: Central de pendências de confirmação -->
+<div id="vetcoreModalPendencias" class="modal oculto">
+  <div class="modal-box vetcore-pendencias-modal">
+    <button type="button" class="modal-fechar" onclick="vetcoreFecharPendenciasConfirmacao()">×</button>
+    <div class="pendencias-topo">
+      <div class="pendencias-icone">🔔</div>
+      <div>
+        <h3>Pendências de confirmação</h3>
+        <p id="vetcorePendenciasResumo">Agendamentos ainda pendentes.</p>
+      </div>
+    </div>
+    <div id="vetcorePendenciasLista" class="pendencias-lista"></div>
+  </div>
+</div>
+
+<style>
+  .vetcore-pendencias-modal{max-width:980px;width:min(96vw,980px);padding:26px;border-radius:24px;}
+  .vetcore-pendencias-modal .modal-fechar{position:absolute;right:20px;top:18px;border:0;background:#eef6ff;border-radius:50%;width:42px;height:42px;font-size:26px;font-weight:900;cursor:pointer;color:#0b2240;}
+  .pendencias-topo{display:flex;gap:14px;align-items:center;margin-bottom:18px;padding-right:52px;}
+  .pendencias-icone{width:58px;height:58px;border-radius:18px;background:#eaf6ff;display:flex;align-items:center;justify-content:center;font-size:28px;}
+  .pendencias-topo h3{margin:0;font-size:26px;color:#0b2240;}
+  .pendencias-topo p{margin:4px 0 0;color:#51647d;}
+  .pendencias-lista{display:flex;flex-direction:column;gap:10px;max-height:65vh;overflow:auto;padding-right:4px;}
+  .pendencia-card{display:grid;grid-template-columns:90px 1.2fr 1fr 1fr 1.1fr auto;gap:12px;align-items:center;border:1px solid #d8e7f8;border-radius:16px;background:#fff;padding:13px 14px;box-shadow:0 8px 20px rgba(15,37,70,.05);}
+  .pendencia-card strong{color:#0b2240;}
+  .pendencia-card small{display:block;color:#667894;margin-top:2px;}
+  .pendencia-hora{font-weight:900;font-size:18px;color:#065fdc;}
+  .pendencia-servico{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:7px 10px;font-weight:800;background:#eaf2ff;color:#095fc7;white-space:nowrap;}
+  .pendencia-acoes{display:flex;gap:8px;align-items:center;justify-content:flex-end;}
+  .pendencia-acoes button{border:0;border-radius:10px;padding:9px 12px;font-weight:900;cursor:pointer;white-space:nowrap;}
+  .pendencia-whats{background:#20c764;color:white;}
+  .pendencia-confirmar{background:#fff0b8;color:#8a5a00;}
+  .pendencias-vazio{padding:28px;text-align:center;border-radius:18px;background:#f6f9fd;color:#53667d;font-weight:700;}
+  .vc2-bell{position:relative;}
+  .vc2-bell b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#ef3b42;color:#fff;font-size:12px;line-height:20px;position:absolute;right:-6px;top:-8px;}
+  .vc2-bell b:empty,.vc2-bell b.zero{display:none;}
+  @media(max-width:900px){.pendencia-card{grid-template-columns:1fr;}.pendencia-acoes{justify-content:flex-start;flex-wrap:wrap;}}
+</style>
+
+<script>
+(function vetcorePendenciasConfirmacaoPatch(){
+  const $ = id => document.getElementById(id);
+  const arr = v => Array.isArray(v) ? v : [];
+  const txt = v => String(v ?? '').trim();
+  const norm = v => txt(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function isoData(v){
+    const s=txt(v); let m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/); if(m) return s;
+    m=s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/); if(m) return `${m[3]}-${m[2]}-${m[1]}`;
+    return s;
+  }
+  function hojeIso(){ try { return typeof dataHojeIso==='function' ? isoData(dataHojeIso()) : new Date().toISOString().slice(0,10); } catch(e){ return new Date().toISOString().slice(0,10); } }
+  function clinicaAtual(){ try { return typeof obterClinicaSelecionada==='function' ? obterClinicaSelecionada() : (localStorage.getItem('clinicaSelecionada')||''); } catch(e){ return localStorage.getItem('clinicaSelecionada')||''; } }
+  function getAgs(){ try { return arr(JSON.parse(localStorage.getItem('agendamentos')||'[]')).map(a=>Object.assign({},a,{data:isoData(a.data)})); } catch(e){ return []; } }
+  function getConfirmacoes(){ try { return JSON.parse(localStorage.getItem('confirmacoesAgendamentos')||'{}')||{}; } catch(e){ return {}; } }
+  function statusConfirmacao(ag){
+    const c=getConfirmacoes();
+    const direto = c[ag.id] || c[String(ag.id)] || ag.confirmacao || ag.statusConfirmacao || 'Pendente';
+    const n=norm(direto);
+    if(n.includes('confirm')) return 'confirmado';
+    if(n.includes('ok') || n.includes('compareceu')) return 'ok';
+    if(n.includes('nao veio') || n.includes('faltou')) return 'nao_veio';
+    return 'pendente';
+  }
+  function horaAg(a){ return txt(a.horario||a.hora||a.janela||a.faixaHorario||'-'); }
+  function pendenciasHoje(){
+    const clinica=clinicaAtual(); const hoje=hojeIso();
+    return getAgs().filter(a=> (!clinica || a.clinica===clinica) && isoData(a.data)===hoje && statusConfirmacao(a)==='pendente' && !['ok','compareceu','nao_veio','faltou'].includes(norm(a.atendimentoStatus||a.statusAtendimento||a.presenca||'')))
+      .sort((a,b)=> horaAg(a).localeCompare(horaAg(b)) || txt(a.veterinario).localeCompare(txt(b.veterinario)));
+  }
+  window.vetcoreAtualizarBadgePendencias = function(){
+    const total=pendenciasHoje().length;
+    const badge=$('vc2PendenciasBadge');
+    if(badge){ badge.textContent=String(total); badge.classList.toggle('zero', total===0); }
+    return total;
+  };
+  window.vetcoreAbrirPendenciasConfirmacao = function(){
+    const modal=$('vetcoreModalPendencias'); const lista=$('vetcorePendenciasLista'); const resumo=$('vetcorePendenciasResumo');
+    if(!modal||!lista) return;
+    const itens=pendenciasHoje();
+    if(resumo) resumo.textContent = itens.length ? `${itens.length} agendamento(s) aguardando confirmação hoje.` : 'Nenhuma pendência de confirmação hoje.';
+    if(!itens.length){
+      lista.innerHTML='<div class="pendencias-vazio"><div class="pendencias-vazio-icone">✅</div><strong>Nenhuma pendência de confirmação</strong><span>Tudo certo por aqui hoje.</span></div>';
+    } else {
+      lista.innerHTML=itens.map(a=>`
+        <div class="pendencia-card">
+          <div class="pendencia-hora">${esc(horaAg(a))}</div>
+          <div><strong>${esc(a.tutor||'-')}</strong><small>Tutor</small></div>
+          <div><strong>${esc(a.pet||'-')}</strong><small>Pet</small></div>
+          <div><span class="pendencia-servico">${esc(a.servico||'-')}</span><small>${esc(a.veterinario||'-')}</small></div>
+          <div><strong>${esc(a.telefone||'-')}</strong><small>Telefone/WhatsApp</small></div>
+          <div class="pendencia-acoes">
+            <button class="pendencia-whats" onclick="abrirWhatsAppConfirmacao(${Number(a.id)}); setTimeout(vetcoreAtualizarBadgePendencias,400)">Whats</button>
+            <button class="pendencia-confirmar" onclick="vetcoreConfirmarPendente(${Number(a.id)})">Confirmar</button>
+          </div>
+        </div>`).join('');
+    }
+    modal.classList.remove('oculto');
+  };
+  window.vetcoreFecharPendenciasConfirmacao = function(){ const modal=$('vetcoreModalPendencias'); if(modal) modal.classList.add('oculto'); };
+  window.vetcoreConfirmarPendente = function(id){
+    try { if(typeof marcarStatusConfirmacao==='function') marcarStatusConfirmacao(id,'Confirmado'); else { const c=getConfirmacoes(); c[id]='Confirmado'; localStorage.setItem('confirmacoesAgendamentos', JSON.stringify(c)); } } catch(e){ const c=getConfirmacoes(); c[id]='Confirmado'; localStorage.setItem('confirmacoesAgendamentos', JSON.stringify(c)); }
+    try { if(typeof carregarListaAgendamentos==='function') carregarListaAgendamentos(); } catch(e){}
+    try { if(typeof montarAgendaDoDiaNoMenu==='function') montarAgendaDoDiaNoMenu(); } catch(e){}
+    vetcoreAtualizarBadgePendencias();
+    vetcoreAbrirPendenciasConfirmacao();
+  };
+  const oldMarcar = window.marcarStatusConfirmacao;
+  if(typeof oldMarcar==='function'){
+    window.marcarStatusConfirmacao = function(id,status){ const r=oldMarcar.apply(this,arguments); setTimeout(()=>{ try{vetcoreAtualizarBadgePendencias();}catch(e){} },80); return r; };
+  }
+  const oldAtendimento = window.vetcoreMarcarAtendimento;
+  if(typeof oldAtendimento==='function'){
+    window.vetcoreMarcarAtendimento = function(){ const r=oldAtendimento.apply(this,arguments); setTimeout(()=>{ try{vetcoreAtualizarBadgePendencias();}catch(e){} },120); return r; };
+  }
+  document.addEventListener('DOMContentLoaded', ()=>setTimeout(vetcoreAtualizarBadgePendencias,300));
+  setTimeout(vetcoreAtualizarBadgePendencias,600);
+  setInterval(vetcoreAtualizarBadgePendencias,5000);
+})();
+</script>
+
+
+
+<style id="vetcore-pendencias-modal-visual-final">
+  #vetcoreModalPendencias.modal{
+    position:fixed !important;
+    inset:0 !important;
+    z-index:999999 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:24px !important;
+    background:rgba(7,18,38,.64) !important;
+    backdrop-filter:blur(5px) !important;
+  }
+  #vetcoreModalPendencias.modal.oculto{display:none !important;}
+  #vetcoreModalPendencias .vetcore-pendencias-modal{
+    width:min(92vw,820px) !important;
+    max-width:820px !important;
+    max-height:86vh !important;
+    overflow:auto !important;
+    margin:0 !important;
+    padding:30px !important;
+    border-radius:28px !important;
+    background:#ffffff !important;
+    border:1px solid #d8e7f8 !important;
+    box-shadow:0 30px 90px rgba(4,18,44,.38) !important;
+    color:#0b2240 !important;
+  }
+  #vetcoreModalPendencias .modal-fechar{
+    position:absolute !important;
+    right:22px !important;
+    top:20px !important;
+    width:48px !important;
+    height:48px !important;
+    border:0 !important;
+    border-radius:50% !important;
+    background:#eef6ff !important;
+    color:#0b2240 !important;
+    font-size:30px !important;
+    font-weight:900 !important;
+    line-height:1 !important;
+    cursor:pointer !important;
+  }
+  #vetcoreModalPendencias .pendencias-topo{
+    display:flex !important;
+    align-items:center !important;
+    gap:16px !important;
+    padding-right:60px !important;
+    margin:0 0 20px !important;
+  }
+  #vetcoreModalPendencias .pendencias-icone{
+    flex:0 0 auto !important;
+    width:64px !important;
+    height:64px !important;
+    border-radius:20px !important;
+    background:#eaf6ff !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:30px !important;
+    box-shadow:inset 0 0 0 1px #d9edff !important;
+  }
+  #vetcoreModalPendencias .pendencias-topo h3{
+    margin:0 !important;
+    font-size:28px !important;
+    line-height:1.15 !important;
+    color:#0b2240 !important;
+    font-weight:900 !important;
+  }
+  #vetcoreModalPendencias .pendencias-topo p{
+    margin:6px 0 0 !important;
+    color:#51647d !important;
+    font-weight:600 !important;
+  }
+  #vetcoreModalPendencias .pendencias-lista{
+    background:#f7fbff !important;
+    border:1px solid #dbeafe !important;
+    border-radius:22px !important;
+    padding:16px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:12px !important;
+    max-height:60vh !important;
+    overflow:auto !important;
+  }
+  #vetcoreModalPendencias .pendencias-vazio{
+    min-height:150px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    border-radius:18px !important;
+    background:#ffffff !important;
+    border:1px dashed #cfe1f6 !important;
+    color:#0b2240 !important;
+    text-align:center !important;
+    font-weight:800 !important;
+    padding:28px !important;
+  }
+  #vetcoreModalPendencias .pendencias-vazio-icone{
+    width:52px !important;
+    height:52px !important;
+    border-radius:18px !important;
+    background:#ecfdf3 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:26px !important;
+    margin-bottom:4px !important;
+  }
+  #vetcoreModalPendencias .pendencias-vazio strong{font-size:18px !important;}
+  #vetcoreModalPendencias .pendencias-vazio span{color:#667894 !important;font-weight:600 !important;}
+  #vetcoreModalPendencias .pendencia-card{
+    display:grid !important;
+    grid-template-columns:80px 1fr 1fr 1fr 1.15fr auto !important;
+    gap:12px !important;
+    align-items:center !important;
+    border:1px solid #d8e7f8 !important;
+    border-radius:16px !important;
+    background:#fff !important;
+    padding:13px 14px !important;
+    box-shadow:0 8px 20px rgba(15,37,70,.05) !important;
+  }
+  #vetcoreModalPendencias .pendencia-acoes{display:flex !important;gap:8px !important;justify-content:flex-end !important;flex-wrap:wrap !important;}
+  @media(max-width:900px){
+    #vetcoreModalPendencias .vetcore-pendencias-modal{width:94vw !important;padding:22px !important;}
+    #vetcoreModalPendencias .pendencia-card{grid-template-columns:1fr !important;}
+    #vetcoreModalPendencias .pendencia-acoes{justify-content:flex-start !important;}
+  }
+</style>
+
+
+
+<!-- VetCore pacote gerencial: backup, relatório geral, edição completa e segurança de exclusão -->
+<style>
+  .vc-mgmt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}.vc-mgmt-card{background:#fff;border:1px solid #e6edf5;border-radius:16px;padding:16px;box-shadow:0 10px 24px rgba(15,23,42,.08)}.vc-mgmt-card strong{display:block;color:#0f2742;margin-bottom:6px}.vc-mgmt-card small{color:#667085}.vc-mgmt-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.vc-table-compact{width:100%;border-collapse:separate;border-spacing:0 8px}.vc-table-compact th{font-size:12px;text-transform:uppercase;color:#64748b;text-align:left;padding:8px}.vc-table-compact td{background:#fff;padding:10px;border-top:1px solid #edf2f7;border-bottom:1px solid #edf2f7}.vc-table-compact td:first-child{border-left:1px solid #edf2f7;border-radius:12px 0 0 12px}.vc-table-compact td:last-child{border-right:1px solid #edf2f7;border-radius:0 12px 12px 0}.vc-modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;display:none;align-items:center;justify-content:center;padding:18px}.vc-modal-backdrop.aberto{display:flex}.vc-modal-card{background:#fff;width:min(960px,96vw);max-height:92vh;overflow:auto;border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.28);padding:22px}.vc-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.vc-modal-head h3{margin:0;color:#0f2742}.vc-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.vc-form-grid label{font-size:12px;font-weight:700;color:#475569;display:block;margin-bottom:5px}.vc-form-grid input,.vc-form-grid select,.vc-form-grid textarea{width:100%;box-sizing:border-box}.vc-modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.vc-danger{background:#ef4444!important;color:#fff!important}.vc-muted{color:#64748b}.vc-badge-mini{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:700;background:#eef2ff;color:#3730a3}.vc-toolbar{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin:12px 0}.vc-toolbar .campo-relatorio{min-width:160px}.vc-file-hidden{display:none!important}
+</style>
+<div id="vcEditBackdrop" class="vc-modal-backdrop">
+  <div class="vc-modal-card">
+    <div class="vc-modal-head">
+      <h3>Editar agendamento completo</h3>
+      <button class="btn-secundario" type="button" onclick="vcFecharEditarAgendamento()">Fechar</button>
+    </div>
+    <input type="hidden" id="vcEditId">
+    <div class="vc-form-grid">
+      <div><label>Serviço</label><select id="vcEditServico"><option>Consulta</option><option>Vacina</option><option>Retorno</option><option>Castração</option><option>Procedimento</option></select></div>
+      <div><label>Veterinário</label><select id="vcEditVeterinario"></select></div>
+      <div><label>Data</label><input type="date" id="vcEditData"></div>
+      <div><label>Horário</label><input type="text" id="vcEditHorario" placeholder="09:00 ou 08:30 às 10:00"></div>
+      <div><label>Tutor</label><input type="text" id="vcEditTutor"></div>
+      <div><label>Telefone</label><input type="text" id="vcEditTelefone"></div>
+      <div><label>Pet</label><input type="text" id="vcEditPet"></div>
+      <div><label>Espécie</label><select id="vcEditEspecie"><option value="">Selecione</option><option>Canino</option><option>Felino</option></select></div>
+      <div><label>Sexo</label><select id="vcEditSexo"><option value="">Selecione</option><option>Macho</option><option>Fêmea</option></select></div>
+      <div><label>Peso</label><input type="text" id="vcEditPeso" placeholder="Ex.: 6 kg"></div>
+      <div><label>Inalatória</label><select id="vcEditInalatoria"><option value="Não">Não</option><option value="Sim">Sim</option></select></div>
+      <div><label>Confirmação</label><select id="vcEditConfirmacao"><option value="Pendente">Pendente</option><option value="Confirmado">Confirmado</option><option value="OK">OK</option><option value="Não veio">Não veio</option></select></div>
+      <div style="grid-column:1/-1"><label>Nome do procedimento</label><input type="text" id="vcEditProcedimento" placeholder="Nome do procedimento, quando houver"></div>
+      <div style="grid-column:1/-1"><label>Observações</label><textarea id="vcEditObs" rows="3"></textarea></div>
+    </div>
+    <div class="vc-modal-footer">
+      <button type="button" class="btn-secundario" onclick="vcFecharEditarAgendamento()">Cancelar</button>
+      <button type="button" class="btn-verde" onclick="vcSalvarEdicaoCompleta()">Salvar alterações</button>
+    </div>
+  </div>
+</div>
+<input id="vcImportBackupInput" class="vc-file-hidden" type="file" accept="application/json,.json" onchange="vcImportarBackupArquivo(event)">
+<script>
+(function(){
+  const $ = (id)=>document.getElementById(id);
+  const norm = (v)=>(v||'').toString().trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const safeArr = (v)=>Array.isArray(v)?v:[];
+  const fmtData = (d)=>{ if(!d) return '-'; const [y,m,day]=(d||'').split('-'); return y&&m&&day?`${day}/${m}/${y}`:d; };
+  const onlyDigits=(v)=>(v||'').replace(/\D/g,'');
+  function msg(t){ if(typeof vcAlert==='function') return vcAlert(t); alert(t); }
+  async function ask(t){ if(typeof vcConfirm==='function') return await vcConfirm(t); return confirm(t); }
+  function ags(){ try { return typeof obterAgendamentos==='function' ? obterAgendamentos() : JSON.parse(localStorage.getItem('agendamentos')||'[]'); } catch(e){ return []; } }
+  function saveAgs(lista){ if(typeof salvarAgendamentos==='function') salvarAgendamentos(lista); else localStorage.setItem('agendamentos', JSON.stringify(lista||[])); }
+  function clinicaAtual(){ try { return typeof obterClinicaSelecionada==='function' ? obterClinicaSelecionada() : (localStorage.getItem('clinicaSelecionada')||'VetCore'); } catch(e){ return localStorage.getItem('clinicaSelecionada')||'VetCore'; } }
+  function vets(){
+    const clin=clinicaAtual();
+    try { const obj=JSON.parse(localStorage.getItem('veterinariosPorClinica')||'{}'); if(Array.isArray(obj[clin])) return obj[clin]; } catch(e){}
+    try { const lista=JSON.parse(localStorage.getItem('veterinarios')||'[]'); if(Array.isArray(lista)) return lista; } catch(e){}
+    const nomes=[...new Set(ags().map(a=>a.veterinario).filter(Boolean))]; return nomes.map(nome=>({nome}));
+  }
+  function statusAg(a){
+    const direto = a.status || a.confirmacao || a.comparecimento || '';
+    const mapas = ['confirmacoesAgendamentos','statusAgendamentos','comparecimentosAgendamentos'];
+    for(const key of mapas){ try { const obj=JSON.parse(localStorage.getItem(key)||'{}'); if(obj && obj[a.id]) return obj[a.id]; } catch(e){} }
+    return direto || 'Pendente';
+  }
+  function isNaoVeio(a){ const s=norm(statusAg(a)); return s.includes('nao veio')||s.includes('não veio')||s.includes('faltou')||s==='ausente'; }
+  function csv(rows){ return rows.map(r=>r.map(v=>`"${(v??'').toString().replace(/"/g,'""')}"`).join(';')).join('\n'); }
+  function download(nome, conteudo, tipo='text/plain;charset=utf-8'){ const blob=new Blob([conteudo],{type:tipo}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=nome; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},300); }
+
+  // 1) BACKUP / IMPORTAÇÃO / EXPORTAÇÃO
+  window.vcExportarBackup = function(){
+    const dados={versao:'VetCore backup 1.0', geradoEm:new Date().toISOString(), localStorage:{}};
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); dados.localStorage[k]=localStorage.getItem(k); }
+    download(`vetcore-backup-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify(dados,null,2), 'application/json;charset=utf-8');
+  };
+  window.vcAbrirImportarBackup = async function(){ $('vcImportBackupInput').click(); };
+  window.vcImportarBackupArquivo = async function(ev){
+    const file=ev.target.files&&ev.target.files[0]; if(!file) return;
+    const ok=await ask('Importar este backup? Os dados locais atuais serão substituídos.'); if(!ok){ ev.target.value=''; return; }
+    const txt=await file.text();
+    try{ const dados=JSON.parse(txt); const ls=dados.localStorage||{}; Object.keys(ls).forEach(k=>localStorage.setItem(k,ls[k])); msg('Backup importado. O sistema será recarregado.'); setTimeout(()=>location.reload(),600); }
+    catch(e){ msg('Arquivo de backup inválido.'); }
+    ev.target.value='';
+  };
+  window.vcExportarAgendamentosCSV = function(){
+    const rows=[['Data','Horário','Serviço','Veterinário','Tutor','Pet','Telefone','Espécie','Sexo','Peso','Inalatória','Status','Observações']];
+    ags().forEach(a=>rows.push([fmtData(a.data),a.horario||'',a.servico||'',a.veterinario||'',a.tutor||'',a.pet||'',a.telefone||'',a.especie||'',a.sexo||'',a.peso||'',a.inalatoria||a.inhalatoria||'',statusAg(a),a.observacoes||'']));
+    download(`vetcore-agendamentos-${new Date().toISOString().slice(0,10)}.csv`, '\ufeff'+csv(rows), 'text/csv;charset=utf-8');
+  };
+
+  const oldPlaceholder = window.abrirConfigPlaceholder;
+  window.abrirConfigPlaceholder = function(tipo){
+    if(typeof oldPlaceholder==='function') oldPlaceholder(tipo); else if(typeof mostrarTela==='function') mostrarTela('telaConfigPlaceholder');
+    const titulo=$('configPlaceholderTitulo'), sub=$('configPlaceholderSubtitulo'), box=$('configPlaceholderConteudo'); if(!box) return;
+    if(tipo==='preferencias'){
+      if(titulo) titulo.textContent='Preferências do sistema';
+      if(sub) sub.textContent='Ferramentas locais, backup e comportamento do VetCore.';
+      box.innerHTML=`<div class="vc-mgmt-grid">
+        <div class="vc-mgmt-card"><strong>Backup completo</strong><small>Baixe um arquivo JSON com todos os dados locais do sistema.</small><div class="vc-mgmt-actions"><button class="btn-verde" onclick="vcExportarBackup()">Exportar backup</button><button class="btn-secundario" onclick="vcAbrirImportarBackup()">Importar backup</button></div></div>
+        <div class="vc-mgmt-card"><strong>Exportação operacional</strong><small>Gere uma planilha CSV com todos os agendamentos salvos.</small><div class="vc-mgmt-actions"><button class="btn-azul" onclick="vcExportarAgendamentosCSV()">Exportar agendamentos CSV</button></div></div>
+        <div class="vc-mgmt-card"><strong>Segurança</strong><small>Antes de subir para uso oficial, faça backup diariamente ao final do expediente.</small></div>
+      </div>`;
+    }
+  };
+
+  // 3) Permissões: reforço visual e exportação de permissões
+  window.vcExportarUsuariosPermissoesCSV = function(){
+    let usuarios=[]; try { usuarios = typeof obterUsuariosPermitidos==='function' ? obterUsuariosPermitidos() : JSON.parse(localStorage.getItem('usuariosPermitidos')||'[]'); } catch(e){}
+    const rows=[['Usuário','Perfil','Permissões']];
+    usuarios.forEach(u=>rows.push([u.usuario||'',u.perfil||'',Object.keys(u.permissoes||{}).filter(k=>u.permissoes[k]).join(', ')]));
+    download('vetcore-usuarios-permissoes.csv','\ufeff'+csv(rows),'text/csv;charset=utf-8');
+  };
+  setTimeout(()=>{
+    const area=document.querySelector('#telaConfigUsuarios .linha-botoes');
+    if(area && !document.getElementById('btnExportPermissoes')) area.insertAdjacentHTML('beforeend','<button id="btnExportPermissoes" class="btn-secundario" onclick="vcExportarUsuariosPermissoesCSV()">Exportar permissões CSV</button>');
+  },500);
+
+  // 4) RELATÓRIO GERAL DE ATENDIMENTOS
+  function inserirRelatorioGeral(){
+    const tela=$('telaRelatorios'); if(!tela || $('relAtendInicio')) return;
+    const alvo=$('relatorioVazio') || tela.querySelector('.rodape-acoes');
+    const html=`<div class="relatorio-secao relatorio-atendimentos-periodo">
+      <h3>Relatório geral de atendimentos por período</h3>
+      <div class="subinfo">Consulta, vacina, retorno, castração e procedimento no mesmo relatório.</div>
+      <div class="relatorio-filtros-pdf">
+        <div class="campo-relatorio"><label>Data inicial</label><input type="date" id="relAtendInicio"></div>
+        <div class="campo-relatorio"><label>Data final</label><input type="date" id="relAtendFim"></div>
+        <div class="campo-relatorio"><label>Veterinário</label><select id="relAtendVet"><option value="Todos">Todos</option></select></div>
+        <div class="campo-relatorio"><label>Serviço</label><select id="relAtendServico"><option value="Todos">Todos</option><option>Consulta</option><option>Vacina</option><option>Retorno</option><option>Castração</option><option>Procedimento</option></select></div>
+        <div class="campo-relatorio"><label>Status</label><select id="relAtendStatus"><option value="Todos">Todos</option><option>Pendente</option><option>Confirmado</option><option>OK</option><option>Não veio</option></select></div>
+        <div class="campo-relatorio"><label>Buscar</label><input type="text" id="relAtendBusca" placeholder="Tutor, pet ou telefone"></div>
+      </div>
+      <div class="relatorio-acoes-pdf">
+        <button class="btn-verde" onclick="vcRelAtendHoje()">Hoje</button><button class="btn-secundario" onclick="vcRelAtendSemana()">7 dias</button><button class="btn-secundario" onclick="vcRelAtendMes()">30 dias</button><button class="btn-azul" onclick="vcGerarRelatorioAtendimentos()">Gerar relatório</button><button class="btn-verde" onclick="vcImprimirRelatorioAtendimentos()">Imprimir / PDF</button><button class="btn-secundario" onclick="vcExportarRelatorioAtendimentosCSV()">Exportar CSV</button>
+      </div>
+      <div id="relAtendResumo" class="relatorio-caixa"></div><div id="relAtendTabela" class="tabela-scroll"></div>
+    </div>`;
+    alvo.insertAdjacentHTML('beforebegin',html);
+  }
+  function preencherVetsRelatorios(){ ['relAtendVet','vcEditVeterinario'].forEach(id=>{ const sel=$(id); if(!sel) return; const atual=sel.value; sel.innerHTML=id==='relAtendVet'?'<option value="Todos">Todos</option>':'<option value="">Selecione</option>'; vets().forEach(v=>{ const nome=v.nome||v.veterinario||v.name; if(nome) sel.insertAdjacentHTML('beforeend',`<option>${nome}</option>`); }); if(atual) sel.value=atual; }); }
+  const oldAbrirRel=window.abrirTelaRelatorios;
+  window.abrirTelaRelatorios=function(){ if(typeof oldAbrirRel==='function') oldAbrirRel(); inserirRelatorioGeral(); preencherVetsRelatorios(); if(!$('relAtendInicio')?.value) vcRelAtendSemana(); };
+  function filtrarAtend(){
+    const ini=$('relAtendInicio')?.value||'0000-01-01', fim=$('relAtendFim')?.value||'9999-12-31', vet=$('relAtendVet')?.value||'Todos', serv=$('relAtendServico')?.value||'Todos', st=$('relAtendStatus')?.value||'Todos', busca=norm($('relAtendBusca')?.value||'');
+    return ags().filter(a=>a.data>=ini && a.data<=fim)
+      .filter(a=>vet==='Todos'||a.veterinario===vet)
+      .filter(a=>serv==='Todos'||norm(a.servico).includes(norm(serv)))
+      .filter(a=>st==='Todos'||norm(statusAg(a)).includes(norm(st)))
+      .filter(a=>!busca || norm([a.tutor,a.pet,a.telefone,a.servico,a.veterinario].join(' ')).includes(busca))
+      .sort((a,b)=>(a.data||'').localeCompare(b.data||'') || (a.horario||'').localeCompare(b.horario||''));
+  }
+  window.vcRelAtendHoje=function(){ const d=new Date().toISOString().slice(0,10); if($('relAtendInicio')) $('relAtendInicio').value=d; if($('relAtendFim')) $('relAtendFim').value=d; vcGerarRelatorioAtendimentos(); };
+  window.vcRelAtendSemana=function(){ const d=new Date(), f=new Date(); f.setDate(d.getDate()+6); if($('relAtendInicio')) $('relAtendInicio').value=d.toISOString().slice(0,10); if($('relAtendFim')) $('relAtendFim').value=f.toISOString().slice(0,10); vcGerarRelatorioAtendimentos(); };
+  window.vcRelAtendMes=function(){ const d=new Date(), f=new Date(); f.setDate(d.getDate()+29); if($('relAtendInicio')) $('relAtendInicio').value=d.toISOString().slice(0,10); if($('relAtendFim')) $('relAtendFim').value=f.toISOString().slice(0,10); vcGerarRelatorioAtendimentos(); };
+  window.vcGerarRelatorioAtendimentos=function(){
+    inserirRelatorioGeral(); preencherVetsRelatorios(); const lista=filtrarAtend();
+    const porServ={}; lista.forEach(a=>{ const s=a.servico||'Sem serviço'; porServ[s]=(porServ[s]||0)+1; });
+    const faltas=lista.filter(isNaoVeio).length, ok=lista.filter(a=>norm(statusAg(a))==='ok').length;
+    if($('relAtendResumo')) $('relAtendResumo').innerHTML=`<div class="vc-mgmt-grid"><div class="vc-mgmt-card"><strong>${lista.length}</strong><small>Total no período</small></div><div class="vc-mgmt-card"><strong>${ok}</strong><small>OK / compareceu</small></div><div class="vc-mgmt-card"><strong>${faltas}</strong><small>Não veio</small></div><div class="vc-mgmt-card"><strong>${Object.entries(porServ).map(([k,v])=>`${k}: ${v}`).join('<br>')||'Sem dados'}</strong><small>Por serviço</small></div></div>`;
+    const rows=lista.map(a=>`<tr><td>${fmtData(a.data)}</td><td>${a.horario||'-'}</td><td>${a.servico||'-'}</td><td>${a.veterinario||'-'}</td><td>${a.tutor||'-'}</td><td>${a.pet||'-'}</td><td>${a.telefone||'-'}</td><td>${statusAg(a)}</td></tr>`).join('');
+    if($('relAtendTabela')) $('relAtendTabela').innerHTML=`<table class="tabela-linhas"><thead><tr><th>Data</th><th>Hora</th><th>Serviço</th><th>Veterinário</th><th>Tutor</th><th>Pet</th><th>Telefone</th><th>Status</th></tr></thead><tbody>${rows||'<tr><td colspan="8">Nenhum atendimento no período.</td></tr>'}</tbody></table>`;
+  };
+  window.vcExportarRelatorioAtendimentosCSV=function(){ const rows=[['Data','Hora','Serviço','Veterinário','Tutor','Pet','Telefone','Status']]; filtrarAtend().forEach(a=>rows.push([fmtData(a.data),a.horario||'',a.servico||'',a.veterinario||'',a.tutor||'',a.pet||'',a.telefone||'',statusAg(a)])); download('vetcore-relatorio-atendimentos.csv','\ufeff'+csv(rows),'text/csv;charset=utf-8'); };
+  window.vcImprimirRelatorioAtendimentos=function(){ vcGerarRelatorioAtendimentos(); const conteudo=($('relAtendResumo')?.outerHTML||'')+($('relAtendTabela')?.outerHTML||''); const w=window.open('','_blank'); w.document.write(`<html><head><title>Relatório de atendimentos</title><style>body{font-family:Arial;padding:24px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #ddd;padding:6px;text-align:left}.vc-mgmt-grid{display:flex;gap:10px}.vc-mgmt-card{border:1px solid #ddd;padding:10px;border-radius:10px}</style></head><body><h2>Relatório geral de atendimentos</h2>${conteudo}<script src="neon-sync.js"></script>
+</body></html>`); w.document.close(); setTimeout(()=>w.print(),300); };
+
+  // 5) EDIÇÃO COMPLETA
+  window.vcFecharEditarAgendamento=function(){ $('vcEditBackdrop')?.classList.remove('aberto'); };
+  const oldEditar=window.editarAgendamento;
+  window.editarAgendamento=function(id){
+    if(typeof temPermissao==='function' && !temPermissao('editarAgendamento')){ msg('Você não tem permissão para editar agendamentos.'); return; }
+    const a=ags().find(x=>String(x.id)===String(id)); if(!a){ if(typeof oldEditar==='function') return oldEditar(id); msg('Agendamento não encontrado.'); return; }
+    preencherVetsRelatorios();
+    $('vcEditId').value=a.id; $('vcEditServico').value=a.servico||'Consulta'; $('vcEditVeterinario').value=a.veterinario||''; $('vcEditData').value=a.data||''; $('vcEditHorario').value=a.horario||''; $('vcEditTutor').value=a.tutor||''; $('vcEditTelefone').value=a.telefone||''; $('vcEditPet').value=a.pet||''; $('vcEditEspecie').value=a.especie||''; $('vcEditSexo').value=a.sexo||''; $('vcEditPeso').value=a.peso||''; $('vcEditInalatoria').value=(a.inalatoria||a.inhalatoria||'Não'); $('vcEditConfirmacao').value=statusAg(a)||'Pendente'; $('vcEditProcedimento').value=a.nomeProcedimento||a.procedimento||''; $('vcEditObs').value=a.observacoes||'';
+    $('vcEditBackdrop').classList.add('aberto');
+  };
+  window.vcSalvarEdicaoCompleta=function(){
+    const id=$('vcEditId').value; const lista=ags(); const idx=lista.findIndex(x=>String(x.id)===String(id)); if(idx<0){ msg('Agendamento não encontrado.'); return; }
+    const a={...lista[idx]};
+    Object.assign(a,{servico:$('vcEditServico').value,veterinario:$('vcEditVeterinario').value,data:$('vcEditData').value,horario:$('vcEditHorario').value,tutor:$('vcEditTutor').value.trim(),telefone:$('vcEditTelefone').value.trim(),pet:$('vcEditPet').value.trim(),especie:$('vcEditEspecie').value,sexo:$('vcEditSexo').value,peso:$('vcEditPeso').value.trim(),inalatoria:$('vcEditInalatoria').value,nomeProcedimento:$('vcEditProcedimento').value.trim(),observacoes:$('vcEditObs').value.trim(),confirmacao:$('vcEditConfirmacao').value});
+    if(!a.data||!a.horario||!a.tutor||!a.telefone||!a.veterinario||!a.servico){ msg('Preencha serviço, veterinário, data, horário, tutor e telefone.'); return; }
+    lista[idx]=a; saveAgs(lista);
+    // salva também no mapa de status para telas que usam status externo
+    try{ const c=JSON.parse(localStorage.getItem('confirmacoesAgendamentos')||'{}'); c[a.id]=a.confirmacao; localStorage.setItem('confirmacoesAgendamentos',JSON.stringify(c)); }catch(e){}
+    vcFecharEditarAgendamento(); msg('Agendamento atualizado.'); try{ atualizarMenu(); }catch(e){} try{ carregarListaAgendamentos(); }catch(e){} try{ atualizarSinoPendenciasConfirmacao(); }catch(e){}
+  };
+
+  // 6) EXCLUSÃO COM CONFIRMAÇÃO E DETALHES
+  const oldExcluir=window.excluirAgendamento;
+  window.excluirAgendamento=async function(id){
+    if(typeof temPermissao==='function' && !temPermissao('excluirAgendamento')){ msg('Você não tem permissão para excluir agendamentos.'); return; }
+    const a=ags().find(x=>String(x.id)===String(id));
+    const detalhe=a?`\n\n${a.servico||''} - ${a.tutor||''} / ${a.pet||''}\n${fmtData(a.data)} às ${a.horario||''}\n${a.veterinario||''}`:'';
+    const ok=await ask('Tem certeza que deseja excluir este agendamento?'+detalhe); if(!ok) return;
+    const nova=ags().filter(x=>String(x.id)!==String(id)); saveAgs(nova); msg('Agendamento excluído.'); try{ atualizarMenu(); }catch(e){} try{ carregarListaAgendamentos(); }catch(e){} try{ atualizarSinoPendenciasConfirmacao(); }catch(e){}
+  };
+
+  document.addEventListener('DOMContentLoaded',()=>{ inserirRelatorioGeral(); preencherVetsRelatorios(); });
+})();
+</script>
+
+<script src="neon-sync.js"></script>
+</body>
+</html>

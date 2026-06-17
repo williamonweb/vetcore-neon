@@ -1,0 +1,7 @@
+AJUSTE - SERVIÇOS POR PROFISSIONAL
+
+- No cadastro de profissionais, o campo manual de serviços foi substituído por seleção visual.
+- Agora o usuário pode marcar serviços prontos como Consulta, Vacina, Retorno, Castração, Exames, Banho e Tosa, Procedimento e Emergência.
+- Também existe campo para serviço extra opcional.
+- Os serviços selecionados ficam vinculados ao profissional e aparecem na agenda.
+- Mantido o fluxo atual de unidades, planos e login.

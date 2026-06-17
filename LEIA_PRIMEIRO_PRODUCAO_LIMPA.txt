@@ -1,0 +1,14 @@
+VetCore - Versão Produção Limpa
+
+Acesso inicial:
+Usuário: admin
+Senha: admin123
+
+Ao entrar online pela primeira vez:
+1. Cadastre a clínica/unidade.
+2. Cadastre os profissionais.
+3. Configure disponibilidade/horários.
+4. Crie os usuários da recepção.
+5. Troque a senha padrão do admin.
+
+Esta versão foi limpa para produção: sem veterinários, sem agendamentos e sem dados de teste.

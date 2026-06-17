@@ -1,0 +1,5 @@
+Correção aplicada:
+- Botões Editar e Excluir unidades do Painel Mestre agora usam eventos internos seguros.
+- Corrigido problema causado por aspas no onclick das unidades, que impedia os botões de funcionar.
+- Cliente continua sem criar/excluir unidades; controle permanece no Painel Mestre.
+- Unidade principal continua protegida contra exclusão acidental.

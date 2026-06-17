@@ -1,0 +1,38 @@
+VetCore - Perfis e Configurações profissionais
+
+Alterações aplicadas nesta versão:
+
+1. Cadastro de usuários com perfis prontos:
+- Administrador da clínica
+- Recepção
+- Veterinário
+- Gestor
+- Financeiro
+- Atendente
+- Somente leitura
+
+2. Cada perfil já aplica permissões padrão automaticamente.
+
+3. Configurações reorganizadas com novas áreas:
+- Identidade do sistema
+- Profissionais da agenda
+- Usuários e permissões
+- Horários de atendimento
+- Serviços e valores
+- Formas de pagamento
+- Mensagens automáticas
+- Configuração da TV
+- Plano e assinatura
+- Preferências do sistema
+- Painel Mestre, apenas para master
+
+4. As novas áreas de configuração foram deixadas como telas preparadas para evolução,
+sem quebrar o fluxo atual do sistema.
+
+5. Mantido o comportamento atual:
+- Master entra direto no Painel Mestre
+- Cliente não cria clínica
+- Master cria unidades
+- Cliente troca unidade quando houver mais de uma
+- Plano pertence ao cliente principal e as unidades herdam o plano
+- Primeiro acesso pede troca de senha uma única vez

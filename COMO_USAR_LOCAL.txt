@@ -1,0 +1,11 @@
+VETCORE - DEMO LOCAL
+
+1. Extraia esta pasta no computador.
+2. Abra o arquivo ABRIR-DEMO-LOCAL.bat.
+   - Se preferir, abra diretamente o arquivo index.html no navegador.
+3. Use o login master cadastrado no sistema para demonstrar.
+4. Como esta é a versão local, os dados ficam salvos apenas no navegador usado na demonstração.
+
+Observação:
+- Esta versão é para demonstração local em notebook/PC.
+- Para uso real com vários clientes, continue usando a versão online na Vercel e depois Supabase.

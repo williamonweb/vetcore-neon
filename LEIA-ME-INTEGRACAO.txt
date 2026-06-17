@@ -1,0 +1,2 @@
+VetCore dashboard moderno com as funções do menu antigo integradas no novo layout.
+Abra index.html no navegador.
