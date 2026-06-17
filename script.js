@@ -2267,7 +2267,7 @@ function abrirModalPrimeiroAcesso(usuarioObj) {
   setTimeout(() => senha1?.focus(), 20);
 }
 
-function fazerLogin() {
+async function fazerLogin() {
   const usuarioInput = document.getElementById("usuario");
   const senhaInput = document.getElementById("senha");
   const feedback = document.getElementById("loginFeedback");
@@ -2285,6 +2285,21 @@ function fazerLogin() {
   if (!usuario || !senha) {
     if (feedback) feedback.innerText = "Preencha usuário e senha para continuar.";
     return;
+  }
+
+  // Antes de validar login, garante que os usuários vieram do Neon.
+  // Isso permite entrar em aba anônima/outro computador usando o admin salvo no banco.
+  if (window.vetcoreAguardarNuvem) {
+    try {
+      if (btnEntrar) btnEntrar.classList.add("loading");
+      if (feedback) feedback.innerText = "Sincronizando dados do sistema...";
+      await window.vetcoreAguardarNuvem();
+      if (feedback) feedback.innerText = "";
+    } catch (e) {
+      console.warn("Falha ao sincronizar antes do login:", e);
+    } finally {
+      if (btnEntrar) btnEntrar.classList.remove("loading");
+    }
   }
 
   const digitado = usuario.toLowerCase();

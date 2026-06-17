@@ -103,7 +103,7 @@
     saveTimer = setTimeout(saveNow, 900);
   }
 
-  async function loadRemote(){
+  async function loadRemote(options = {}){
     try{
       const resp = await fetch(SYNC_URL, { method: 'GET', cache: 'no-store' });
       const json = await resp.json();
@@ -130,7 +130,8 @@
         setStatus('Dados carregados do Neon', 'ok');
 
         // Recarrega uma vez para o sistema antigo ler o localStorage já sincronizado.
-        if(sessionStorage.getItem(SESSION_LOADED_KEY) !== '1'){
+        const deveRecarregar = options.reload !== false;
+        if(deveRecarregar && sessionStorage.getItem(SESSION_LOADED_KEY) !== '1'){
           sessionStorage.setItem(SESSION_LOADED_KEY, '1');
           setTimeout(()=>location.reload(), 350);
         }
@@ -164,6 +165,7 @@
 
   window.vetcoreSalvarNaNuvem = saveNow;
   window.vetcoreCarregarDaNuvem = loadRemote;
+  window.vetcoreAguardarNuvem = async function(){ return loadRemote({ reload: false }); };
   window.vetcoreCloudSnapshot = snapshot;
 
   window.addEventListener('beforeunload', () => {
@@ -177,7 +179,7 @@
   });
 
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(loadRemote, 300);
+    setTimeout(()=>loadRemote({ reload: true }), 300);
     setInterval(saveNow, 30000);
   });
 })();
